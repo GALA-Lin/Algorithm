@@ -1,23 +1,27 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void quick_sort(int arr[], int left, int right) {
-    if (left >= right) return;
-    int pivot = arr[left];
-    int i = left, j = right;
-    while (i <= j) {
-        while (i <= j && arr[i] <= pivot) i++;
-        while (i <= j && arr[j] >= pivot) j--;
-        if (i < j) swap(arr[i], arr[j]);
+void quick_sort(int q[], int l, int r)
+{
+    if (l >= r) return;
+
+    int i = l - 1, j = r + 1, x = q[l + r >> 1];
+    while (i < j)
+    {
+        do i ++ ; while (q[i] < x);
+        do j -- ; while (q[j] > x);
+        if (i < j) swap(q[i], q[j]);
     }
-    swap(arr[left], arr[j]);
-    quick_sort(arr, left, j);
-    quick_sort(arr, j + 1, right);
+    quick_sort(q, l, j), quick_sort(q, j + 1, r);
 }
 
+
 int main() {
-    int arr[] = {5, 2, 4, 6, 1, 3};
-    int n = sizeof(arr) / sizeof(arr[0]);
+    int arr[1001];
+    int n ;
+    cin >> n;
+    for (int i = 0; i < n; i++) 
+        cin >> arr[i];
     quick_sort(arr, 0, n - 1);
     for (int i = 0; i < n; i++) 
         cout << arr[i] << " ";
