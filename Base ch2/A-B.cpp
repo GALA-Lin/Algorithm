@@ -51,22 +51,27 @@ int main() {
             vector<int> res = sub(a, b);
             if(res[0]!= 0) printf("-");
             for (int i = res.size() - 1; i >= 0; i--) cout << res[i];
-        } else {
+        } 
+        else {
             vector<int> res = sub(b, a);
             for (int i = res.size() - 1; i >= 0; i--) cout << res[i];
         }
-    } else if (isNegative1) { // 第一个数是负数
+    } 
+    else if (isNegative1) { // 第一个数是负数
         vector<int> res = sub(b, a);
         printf("-");
         for (int i = res.size() - 1; i >= 0; i--) cout << res[i];
-    } else if (isNegative2) { // 第二个数是负数
+    }
+    else if (isNegative2) { // 第二个数是负数
         vector<int> res = sub(a, b);
         for (int i = res.size() - 1; i >= 0; i--) cout << res[i];
-    } else { // 两个数都是正数
+    } 
+    else { // 两个数都是正数
         if (cmp(a, b)) {
             vector<int> res = sub(a, b);
             for (int i = res.size() - 1; i >= 0; i--) cout << res[i];
-        } else {
+        } 
+        else {
             vector<int> res = sub(b, a);
             printf("-");
             for (int i = res.size() - 1; i >= 0; i--) cout << res[i];
