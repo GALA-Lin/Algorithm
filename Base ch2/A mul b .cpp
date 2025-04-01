@@ -19,7 +19,7 @@ int main(){
     int b;
     cin >> a >> b;
     vector<int> A;
-    
+    for(int i=a.size()-1; i>=0; i--) A.push_back(a[i]-'0');
     vector<int> res = mul(A, b);
     for(int i=res.size()-1; i>=0; i--) cout << res[i];
     return 0;

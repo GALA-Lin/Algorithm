@@ -1,14 +1,20 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
+#define int long long 
+#define mod 1000000007
 
-int main()
-{
-  int cont = 0;
-  for(int i = 1;i<=2020;i++){
-    for(int j =i; j>0;j /= 10){
-      if(j%10==2) cont++;
+int fun(int n){
+    int temp=1;
+    while(n){
+        temp *=n;
+        n--;
     }
-  }
-  printf("%d",cont);
-  return 0;
+    return temp;
+}
+
+signed main() {
+    // 请在此处编写代码...
+    int n;cin>>n;
+    cout<<fun(n)<<endl;
+    return 0;
 }
