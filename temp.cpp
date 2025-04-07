@@ -6,7 +6,7 @@ const int N = 1e5 + 10;
 
 int n;
 int h[N];
-double p[N];//存放2的次幂
+double p[N];
 
 int main()
 {
@@ -14,7 +14,7 @@ int main()
     for(int i = 1; i <= n; i++) 
         cin >> h[i];
 
-    p[0] = 1;//2^0=1
+    p[0] = 1;
 
     double res = 0;
     for(int i = 1; i <= n; i++)

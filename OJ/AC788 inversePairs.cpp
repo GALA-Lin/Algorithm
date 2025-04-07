@@ -23,26 +23,6 @@ int inversePairs(vector<int>& nums) {
 */
 
 /*解法二 归并排序+二分查找  O(nlogn)*/
-int inversePairs(vector<int>& nums) {
-    int n = nums.size();
-    vector<int> count(n + 1, 0);
-    mergeSort(nums, 0, n - 1, count);
-    int ans = 0;
-    for (int i = 0; i < n; i++) {
-        ans += count[i];
-    }
-    return ans;
-}
-
-void mergeSort(vector<int>& nums, int left, int right, vector<int>& count) {
-    if (left < right) {
-        int mid = (left + right) / 2;
-        mergeSort(nums, left, mid, count);
-        mergeSort(nums, mid + 1, right, count);
-        merge(nums, left, mid, right, count);
-    }
-}
-
 void merge(vector<int>& nums, int left, int mid, int right, vector<int>& count) {
     
     vector<int> temp(nums.begin() + left, nums.begin() + right + 1);
@@ -65,6 +45,27 @@ void merge(vector<int>& nums, int left, int mid, int right, vector<int>& count) 
         nums[i] = temp[i - left];
     }
 }
+void mergeSort(vector<int>& nums, int left, int right, vector<int>& count) {
+    if (left < right) {
+        int mid = (left + right) >> 1;
+        mergeSort(nums, left, mid, count);
+        mergeSort(nums, mid + 1, right, count);
+        merge(nums, left, mid, right, count);
+    }
+}
+
+int inversePairs(vector<int>& nums) {
+    int n = nums.size();
+    vector<int> count(n + 1, 0);
+    mergeSort(nums, 0, n - 1, count);
+    int ans = 0;
+    for (int i = 0; i < n; i++) {
+        ans += count[i];
+    }
+    return ans;
+}
+
+
 int main() {
     int n;
     cin >> n;
