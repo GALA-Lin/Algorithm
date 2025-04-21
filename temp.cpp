@@ -1,29 +1,35 @@
-#include<bits/stdc++.h>
-
+#include <iostream>
 using namespace std;
 
-const int N = 1e5 + 10;
-
-int n;
-int h[N];
-double p[N];
+int n, m, x, a[100001];
+int flag;
 
 int main()
 {
-    cin >> n;
-    for(int i = 1; i <= n; i++) 
-        cin >> h[i];
-
-    p[0] = 1;
-
-    double res = 0;
-    for(int i = 1; i <= n; i++)
+    cin >> n >> m >> x;
+    for (int i = 1; i <= n; i++)
+        cin >> a[i];
+    int l, r;
+    while (m--)
     {
-        p[i] = p[i - 1] * 2;
-        res += 1.0 / p[i] * h[i];
+        flag = 0;
+        cin >> l >> r;
+        for (int i = l; i <= r; i++)
+        {
+            for (int j = i + 1; j <= r; j++)
+            {
+                if (a[i] ^ a[j] == x)
+                {
+                    flag = 1;
+                    printf("%d\n", a[i] ^ a[j]);
+                }
+            }
+            if (flag == 1)
+                cout << "yes" << endl;
+            else
+                cout << "no" << endl;
+        }
     }
-
-    cout << ceil(res) << endl;
-
+    // 请在此输入您的代码
     return 0;
 }

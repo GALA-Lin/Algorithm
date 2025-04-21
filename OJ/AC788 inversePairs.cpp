@@ -23,16 +23,15 @@ int inversePairs(vector<int>& nums) {
 */
 
 /*解法二 归并排序+二分查找  O(nlogn)*/
-void merge(vector<int>& nums, int left, int mid, int right, vector<int>& count) {
-    
-    vector<int> temp(nums.begin() + left, nums.begin() + right + 1);
-    int i = left, j = mid + 1, k = left;
+void merge(vector<int>& nums, int left, int mid, int right, int& count) {
+    vector<int> temp(right - left + 1);
+    int i = left, j = mid + 1, k = 0;
     while (i <= mid && j <= right) {
         if (nums[i] <= nums[j]) {
             temp[k++] = nums[i++];
         } else {
             temp[k++] = nums[j++];
-            count[nums[i]] += mid - i + 1;
+            count += mid - i + 1; // 直接累加逆序对的数量
         }
     }
     while (i <= mid) {
@@ -41,11 +40,12 @@ void merge(vector<int>& nums, int left, int mid, int right, vector<int>& count) 
     while (j <= right) {
         temp[k++] = nums[j++];
     }
-    for (int i = left; i <= right; i++) {
-        nums[i] = temp[i - left];
+    for (int i = 0; i < temp.size(); i++) {
+        nums[left + i] = temp[i];
     }
 }
-void mergeSort(vector<int>& nums, int left, int right, vector<int>& count) {
+
+void mergeSort(vector<int>& nums, int left, int right, int& count) {
     if (left < right) {
         int mid = (left + right) >> 1;
         mergeSort(nums, left, mid, count);
@@ -56,24 +56,17 @@ void mergeSort(vector<int>& nums, int left, int right, vector<int>& count) {
 
 int inversePairs(vector<int>& nums) {
     int n = nums.size();
-    vector<int> count(n + 1, 0);
+    int count = 0; // 使用一个整数来累加逆序对的数量
     mergeSort(nums, 0, n - 1, count);
-    int ans = 0;
-    for (int i = 0; i < n; i++) {
-        ans += count[i];
-    }
-    return ans;
+    return count;
 }
-
 
 int main() {
     int n;
     cin >> n;
-    vector<int> nums;
+    vector<int> nums(n);
     for (int i = 0; i < n; i++) {
-        int x;
-        cin >> x;
-        nums.push_back(x);
+        cin >> nums[i];
     }
     cout << inversePairs(nums) << endl;
     return 0;
