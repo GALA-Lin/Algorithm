@@ -1,20 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define int long long 
-#define mod 1000000007
 
-int fun(int n){
-    int temp=1;
-    while(n){
-        temp *=n;
-        n--;
-    }
-    return temp;
+int fun(int i){
+    if(i==1) return 1;
+    if(i==2) return 2;
+    if(i==3) return 3;
+    else return fun(i-2)+fun(i-1);
 }
 
-signed main() {
-    // 请在此处编写代码...
+int main(){
     int n;cin>>n;
-    cout<<fun(n)<<endl;
+    cout<<fun(n);
     return 0;
 }
