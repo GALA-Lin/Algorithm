@@ -8,7 +8,9 @@ int main()
 {
     cin>>N>>M;
     for(int i=1;i<=N;i++)
-        cin>>v[i]>>w[i];
+        cin>>v[i];
+    for(int i=1;i<=N;i++)
+        cin>>w[i];
     for(int i=1;i<=N;i++)
         for(int j=v[i];j<=M;j++){
             dp[j]=max(dp[j],dp[j-v[i]]+w[i]);

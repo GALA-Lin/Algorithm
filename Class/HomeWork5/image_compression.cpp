@@ -110,6 +110,20 @@ int main()
     {
         cout << b[i] << " ";
     }
+    cout << endl;
+
+    cout << "s数组:" << endl;
+    for (int i = 1; i <= n; i++)
+    {
+        cout << s[i] << " ";
+    }
+    cout << endl;
+    cout << "l数组:" << endl;
+    for (int i = 1; i <= n; i++)
+    {
+        cout << l[i] << " ";
+    }
+    cout << endl;
     // 释放内存
     delete[] s;
     delete[] l;
